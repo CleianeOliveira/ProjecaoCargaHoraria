@@ -46,7 +46,7 @@ class Coordena extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'USUARIO_ID' => 'Usuario ID',
+            'USUARIO_ID' => 'Usuário',
             'CURSO_ID' => 'Curso ID',
             'INICIO' => 'Inicio',
             'FIM' => 'Fim',
