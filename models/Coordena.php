@@ -48,7 +48,7 @@ class Coordena extends \yii\db\ActiveRecord
         return [
             'USUARIO_ID' => 'Usuário',
             'CURSO_ID' => 'Curso ID',
-            'INICIO' => 'Inicio',
+            'INICIO' => 'Início',
             'FIM' => 'Fim',
         ];
     }
