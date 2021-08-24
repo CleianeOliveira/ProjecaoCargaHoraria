@@ -34,7 +34,9 @@ class Disciplina extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['NOME', 'CH', 'PERIODO'], 'required'],
+            [['NOME'],'required','message'=>'Por favor preencha um nome'],
+            [['CH'],'required','message'=>'Por favor preencha a carga horária'],
+            [['PERIODO'],'required','message'=>'Por favor preencha o período'],             
             [['CH', 'PERIODO', 'NUCLEO_ID', 'MATRIZ_ID'], 'integer'],
             [['NOME'], 'string', 'max' => 255],
             [['MATRIZ_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Matriz::className(), 'targetAttribute' => ['MATRIZ_ID' => 'ID']],
@@ -50,10 +52,10 @@ class Disciplina extends \yii\db\ActiveRecord
         return [
             'ID' => 'ID',
             'NOME' => 'Nome',
-            'CH' => 'Ch',
-            'PERIODO' => 'Periodo',
-            'NUCLEO_ID' => 'Nucleo ID',
-            'MATRIZ_ID' => 'Matriz ID',
+            'CH' => 'Carga Horária',
+            'PERIODO' => 'Período',
+            'NUCLEO_ID' => 'Núcleo',
+            'MATRIZ_ID' => 'Matriz',
         ];
     }
 
@@ -72,7 +74,7 @@ class Disciplina extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMATRIZ()
+    public function getMatriz()
     {
         return $this->hasOne(Matriz::className(), ['ID' => 'MATRIZ_ID']);
     }
@@ -82,7 +84,7 @@ class Disciplina extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getNUCLEO()
+    public function getNucleo()
     {
         return $this->hasOne(Nucleo::className(), ['ID' => 'NUCLEO_ID']);
     }

@@ -11,14 +11,20 @@ use app\models\Disciplina;
  */
 class DisciplinaSearch extends Disciplina
 {
+    public function attributes()
+   {      
+       return array_merge(parent::attributes(), ['nucleo.NOME','matriz.SIGLA']);
+   }
+
+    
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['ID', 'CH', 'PERIODO', 'NUCLEO_ID', 'MATRIZ_ID'], 'integer'],
-            [['NOME'], 'safe'],
+            [['ID', 'CH', 'PERIODO'], 'integer'],
+            [['NOME','nucleo.NOME','matriz.SIGLA'], 'safe'],
         ];
     }
 
@@ -47,6 +53,17 @@ class DisciplinaSearch extends Disciplina
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        $query->joinWith(['nucleo']);
+        $dataProvider->sort->attributes['nucleo.NOME'] = [
+            'asc' => ['nucleo.NOME' => SORT_ASC],
+            'desc' => ['nucleo.NOME' => SORT_DESC],
+        ];
+        $query->joinWith(['matriz']);
+        $dataProvider->sort->attributes['matriz.SIGLA'] = [
+            'asc' => ['matriz.SIGLA' => SORT_ASC],
+            'desc' => ['matriz.SIGLA' => SORT_DESC],
+        ];
+
 
         $this->load($params);
 
@@ -66,6 +83,8 @@ class DisciplinaSearch extends Disciplina
         ]);
 
         $query->andFilterWhere(['like', 'NOME', $this->NOME]);
+        $query->andFilterWhere(['LIKE', 'nucleo.NOME',$this->getAttribute('nucleo.NOME')]);
+        $query->andFilterWhere(['LIKE', 'matriz.SIGLA',$this->getAttribute('matriz.SIGLA')]);
 
         return $dataProvider;
     }

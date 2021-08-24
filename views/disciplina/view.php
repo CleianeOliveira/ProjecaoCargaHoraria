@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Nucleo;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Disciplina */
@@ -16,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->ID], [
+        <?= Html::a('Alterar', ['update', 'id' => $model->ID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Excluir', ['delete', 'id' => $model->ID], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Tem certeza que deseja excluir esta disciplina?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,12 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'ID',
+            //'ID',
             'NOME',
             'CH',
             'PERIODO',
-            'NUCLEO_ID',
-            'MATRIZ_ID',
+            [
+                'attribute'=>'nucleo.NOME',
+                'label'=>'Núcleo',
+            ],
+            [
+                'attribute'=>'matriz.SIGLA',
+                'label'=>'Matriz',
+            ],
         ],
     ]) ?>
 
