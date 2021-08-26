@@ -12,6 +12,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'bx2oFu4NSZnTgUgSHz9a-xhob1o3TtjM',
@@ -20,7 +21,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Usuario',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
