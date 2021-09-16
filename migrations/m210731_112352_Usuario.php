@@ -13,14 +13,14 @@ class m210731_112352_Usuario extends Migration
     public function safeUp()
     {
 #USUARIO (ID, LOGIN, SENHA, NOME, NUCLEO_FK)
-        $this->createTable('USUARIO', [
-            'ID' => $this->primaryKey(),
-            'LOGIN' => $this->string(),
-            'SENHA'=>$this->string(),
-            'NOME'=>$this->string()->notNull(),
-            'NUCLEO_ID'=>$this->integer()
+        $this->createTable('usuario', [
+            'id' => $this->primaryKey(),
+            'login' => $this->string()->unique(),
+            'senha'=>$this->string(),
+            'nome'=>$this->string()->notNull(),
+            'nucleo_id'=>$this->integer()
         ]);
-        $this->addForeignKey('nucleo_fk', 'USUARIO', 'NUCLEO_ID', 'NUCLEO', 'ID', 'RESTRICT');
+        $this->addForeignKey('nucleo_fk', 'usuario', 'nucleo_id', 'nucleo', 'id', 'RESTRICT');
     }
 
     /**
@@ -28,8 +28,8 @@ class m210731_112352_Usuario extends Migration
      */
     public function safeDown()
     {
-       $this->dropForeignKey('nucleo_fk', 'USUARIO');
-       $this->dropTable('USUARIO');
+       $this->dropForeignKey('nucleo_fk', 'usuario');
+       $this->dropTable('usuario');
     }
 
     /*

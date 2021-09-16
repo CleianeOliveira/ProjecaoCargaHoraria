@@ -7,15 +7,15 @@ use Yii;
 /**
  * This is the model class for table "oferta".
  *
- * @property int $ID
- * @property string $SEMESTRE_ANO_INICIO
- * @property int $MATRIZ_ID
- * @property int $USUARIO_ID
- * @property string|null $DATA_REGISTRO
+ * @property int $id
+ * @property string $semestre_ano_inicio
+ * @property int $matriz_id
+ * @property int $usuario_id
+ * @property string|null $data_registro
  *
  * @property Detalheoferta[] $detalheofertas
- * @property Usuario $uSUARIO
- * @property Matriz $mATRIZ
+ * @property usuario $usuario
+ * @property matriz $matriz
  */
 class Oferta extends \yii\db\ActiveRecord
 {
@@ -33,12 +33,12 @@ class Oferta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['SEMESTRE_ANO_INICIO', 'MATRIZ_ID', 'USUARIO_ID'], 'required'],
-            [['MATRIZ_ID', 'USUARIO_ID'], 'integer'],
-            [['DATA_REGISTRO'], 'safe'],
-            [['SEMESTRE_ANO_INICIO'], 'string', 'max' => 6],
-            [['USUARIO_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Usuario::className(), 'targetAttribute' => ['USUARIO_ID' => 'ID']],
-            [['MATRIZ_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Matriz::className(), 'targetAttribute' => ['MATRIZ_ID' => 'ID']],
+            [['semestre_ano_inicio', 'matriz_id', 'usuario_id'], 'required'],
+            [['matriz_id', 'usuario_id'], 'integer'],
+            [['data_registro'], 'safe'],
+            [['semestre_ano_inicio'], 'string', 'max' => 6],
+            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => usuario::className(), 'targetAttribute' => ['usuario_id' => 'id']],
+            [['matriz_id'], 'exist', 'skipOnError' => true, 'targetClass' => matriz::className(), 'targetAttribute' => ['matriz_id' => 'id']],
         ];
     }
 
@@ -48,11 +48,11 @@ class Oferta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ID' => 'ID',
-            'SEMESTRE_ANO_INICIO' => 'Semestre Ano Inicio',
-            'MATRIZ_ID' => 'Matriz ID',
-            'USUARIO_ID' => 'Usuario ID',
-            'DATA_REGISTRO' => 'Data Registro',
+            'id' => 'id',
+            'semestre_ano_inicio' => 'Semestre Ano Inicio',
+            'matriz_id' => 'matriz id',
+            'usuario_id' => 'usuario id',
+            'data_registro' => 'Data Registro',
         ];
     }
 
@@ -63,26 +63,26 @@ class Oferta extends \yii\db\ActiveRecord
      */
     public function getDetalheofertas()
     {
-        return $this->hasMany(Detalheoferta::className(), ['OFERTA_ID' => 'ID']);
+        return $this->hasMany(Detalheoferta::className(), ['oferta_id' => 'id']);
     }
 
     /**
-     * Gets query for [[USUARIO]].
+     * Gets query for [[usuario]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getUSUARIO()
+    public function getusuario()
     {
-        return $this->hasOne(Usuario::className(), ['ID' => 'USUARIO_ID']);
+        return $this->hasOne(usuario::className(), ['id' => 'usuario_id']);
     }
 
     /**
-     * Gets query for [[MATRIZ]].
+     * Gets query for [[matriz]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMATRIZ()
+    public function getmatriz()
     {
-        return $this->hasOne(Matriz::className(), ['ID' => 'MATRIZ_ID']);
+        return $this->hasOne(matriz::className(), ['id' => 'matriz_id']);
     }
 }

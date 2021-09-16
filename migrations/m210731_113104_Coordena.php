@@ -13,15 +13,15 @@ class m210731_113104_Coordena extends Migration
     public function safeUp()
     {
         #COORDENA (USUARIO_FK, CURSO_FK, INICIO, FIM)
-        $this->createTable('COORDENA', [
-            'USUARIO_ID'=>$this->integer(),
-            'CURSO_ID'=>$this->integer(),
-            'INICIO'=>$this->date(),
-            'FIM'=>$this->date()
+        $this->createTable('coordena', [
+            'usuario_id'=>$this->integer(),
+            'curso_id'=>$this->integer(),
+            'inicio'=>$this->date(),
+            'fim'=>$this->date()
         ]);
-        $this->addPrimaryKey('pk_coordena', 'COORDENA', ['USUARIO_ID','CURSO_ID']);
-        $this->addForeignKey('usuario_c_fk', 'COORDENA', 'USUARIO_ID', 'USUARIO', 'ID', 'RESTRICT', 'RESTRICT');
-        $this->addForeignKey('curso_c_fk', 'COORDENA', 'CURSO_ID', 'CURSO', 'ID', 'RESTRICT', 'RESTRICT');
+        $this->addPrimaryKey('pk_coordena', 'coordena', ['usuario_id','curso_id']);
+        $this->addForeignKey('usuario_c_fk', 'coordena', 'usuario_id', 'usuario', 'id', 'RESTRICT', 'RESTRICT');
+        $this->addForeignKey('curso_c_fk', 'coordena', 'curso_id', 'curso', 'id', 'RESTRICT', 'RESTRICT');
     }
 
     /**
@@ -29,9 +29,9 @@ class m210731_113104_Coordena extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey('usuario_c_fk', 'COORDENA');
-        $this->dropForeignKey('curso_c_fk', 'COORDENA');
-        $this->dropTable('COORDENA');
+        $this->dropForeignKey('usuario_c_fk', 'coordena');
+        $this->dropForeignKey('curso_c_fk', 'coordena');
+        $this->dropTable('coordena');
     }
 
     /*

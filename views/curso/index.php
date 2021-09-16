@@ -15,12 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-    <?php 
-        if (!Yii::$app->user->isGuest) {
-
-            echo Html::a('Novo Curso', ['create'], ['class' => 'btn btn-success']);
-        }
-    ?>
+        <?= Html::a('Novo Curso', ['create'], ['class' => 'btn btn-success']) ?>        
     </p>
 
     <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -32,30 +27,32 @@ $this->params['breadcrumbs'][] = $this->title;
             //['class' => 'yii\grid\SerialColumn'],
 
             //'ID',
-            'NOME',
-            'CH_TOTAL',
-            'Q_PERIODOS',
-            'SIGLA',
+            'nome',
+            [ 
+                'attribute'=>'ch_total',              
+            ],
+            'q_periodos',
+            'sigla',
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                //'template' => '{update} {delete}',
                 'buttons' => [
                     'delete' => function($url, $model){
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->ID], [
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
                             'class' => '',
                             'data' => [
-                                'confirm' => 'Tem certeza que desejar excluir este curso?',
+                                'confirm' => 'Deseja excluir este curso?',
                                 'method' => 'post',
                             ],
                         ]);
                     }
                 ]
             
-
+            ],
+            
         ],
-    ],
-    ]); ?>
+    ]); 
+    ?>
 
 
 </div>

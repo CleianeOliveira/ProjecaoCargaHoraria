@@ -13,15 +13,15 @@ class m210731_113052_Oferta extends Migration
     public function safeUp()
     {
 #OFERTA (ID, SEMESTRE_INICIO, MATRIZ_FK, USUARIO_FK, DATA_REGISTRO)
-        $this->createTable('OFERTA', [
-            'ID'=>$this->primaryKey(),
-            'SEMESTRE_ANO_INICIO'=>$this->string(6)->notNull(),
-            'MATRIZ_ID'=>$this->integer()->notNull(),
-            'USUARIO_ID'=>$this->integer()->notNull(),
-            'DATA_REGISTRO'=>$this->date()
+        $this->createTable('oferta', [
+            'id'=>$this->primaryKey(),
+            'semestre_ano_inicio'=>$this->string(6)->notNull(),
+            'matriz_id'=>$this->integer()->notNull(),
+            'usuario_id'=>$this->integer()->notNull(),
+            'data_registro'=>$this->date()
         ]);
-        $this->addForeignKey('matriz_o_fk', 'OFERTA', 'MATRIZ_ID', 'MATRIZ', 'ID', 'RESTRICT', 'RESTRICT');
-        $this->addForeignKey('USUARIO_O_FK', 'OFERTA', 'USUARIO_ID', 'USUARIO', 'ID', 'RESTRICT', 'RESTRICT');
+        $this->addForeignKey('matriz_o_fk', 'oferta', 'matriz_id', 'matriz', 'id', 'RESTRICT', 'RESTRICT');
+        $this->addForeignKey('usuario_o_fk', 'oferta', 'usuario_id', 'usuario', 'id', 'RESTRICT', 'RESTRICT');
     }
 
     /**
@@ -29,9 +29,9 @@ class m210731_113052_Oferta extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey('matriz_o_fk', 'OFERTA');
-        $this->dropForeignKey('USUARIO_O_FK', 'OFERTA');
-        $this->dropTable('OFERTA');
+        $this->dropForeignKey('matriz_o_fk', 'oferta');
+        $this->dropForeignKey('usuario_o_fk', 'oferta');
+        $this->dropTable('oferta');
     }
 
     /*

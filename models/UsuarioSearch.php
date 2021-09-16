@@ -17,8 +17,8 @@ class UsuarioSearch extends Usuario
     public function rules()
     {
         return [
-            [['ID', 'NUCLEO_ID'], 'integer'],
-            [['LOGIN', 'SENHA', 'NOME'], 'safe'],
+            [['id', 'nucleo_id'], 'integer'],
+            [['login', 'senha', 'nome'], 'safe'],
         ];
     }
 
@@ -58,13 +58,13 @@ class UsuarioSearch extends Usuario
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'ID' => $this->ID,
-            'NUCLEO_ID' => $this->NUCLEO_ID,
+            'id' => $this->ID,
+            'nucleo_id' => $this->nucleo_id,
         ]);
 
-        $query->andFilterWhere(['like', 'LOGIN', $this->LOGIN])
-            ->andFilterWhere(['like', 'SENHA', $this->SENHA])
-            ->andFilterWhere(['like', 'NOME', $this->NOME]);
+        $query->andFilterWhere(['like', 'login', $this->login])
+            ->andFilterWhere(['like', 'senha', $this->senha])
+            ->andFilterWhere(['like', 'nome', $this->nome]);
 
         return $dataProvider;
     }

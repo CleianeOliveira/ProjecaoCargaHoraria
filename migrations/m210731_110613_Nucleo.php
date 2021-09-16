@@ -13,9 +13,9 @@ class m210731_110613_Nucleo extends Migration
     public function safeUp()
     {
         #NUCLEO(ID, NOME)
-        $this->createTable('NUCLEO', [
-            'ID'=>$this->primaryKey(),
-            'NOME'=>$this->string()
+        $this->createTable('nucleo', [
+            'id'=>$this->primaryKey(),
+            'nome'=>$this->string()
         ]);
 
         
@@ -27,7 +27,7 @@ class m210731_110613_Nucleo extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('NUCLEO');
+        $this->dropTable('nucleo');
     }
 
     /*

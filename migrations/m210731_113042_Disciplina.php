@@ -13,16 +13,16 @@ class m210731_113042_Disciplina extends Migration
     public function safeUp()
     {
 #DISCIPLINA (ID, NOME, CH, PERIODO, NUCLEO_FK, MATRIZ_FK)
-        $this->createTable('DISCIPLINA', [
-            'ID'=>$this->primaryKey(),
-            'NOME'=>$this->string()->notNull(),
-            'CH'=>$this->smallInteger()->notNull(),
-            'PERIODO'=>$this->smallInteger()->notNull(),
-            'NUCLEO_ID'=>$this->integer(),
-            'MATRIZ_ID'=>$this->integer()
+        $this->createTable('disciplina', [
+            'id'=>$this->primaryKey(),
+            'nome'=>$this->string()->notNull(),
+            'ch'=>$this->smallInteger()->notNull(),
+            'periodo'=>$this->smallInteger()->notNull(),
+            'nucleo_id'=>$this->integer(),
+            'matriz_id'=>$this->integer()
         ]);
-        $this->addForeignKey('nucleo_d_fk', 'DISCIPLINA', 'NUCLEO_ID', 'NUCLEO', 'ID', 'RESTRICT');
-        $this->addForeignKey('matriz_d_fk', 'DISCIPLINA', 'MATRIZ_ID', 'MATRIZ', 'ID', 'RESTRICT');
+        $this->addForeignKey('nucleo_d_fk', 'disciplina', 'nucleo_id', 'nucleo', 'id', 'RESTRICT');
+        $this->addForeignKey('matriz_d_fk', 'disciplina', 'matriz_id', 'matriz', 'id', 'RESTRICT');
     }
 
     /**
@@ -30,9 +30,9 @@ class m210731_113042_Disciplina extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey('nucleo_d_fk', 'DISCIPLINA');
-        $this->dropForeignKey('matriz_d_fk', 'DISCIPLINA');
-        $this->dropTable('DISCIPLINA');
+        $this->dropForeignKey('nucleo_d_fk', 'disciplina');
+        $this->dropForeignKey('matriz_d_fk', 'disciplina');
+        $this->dropTable('disciplina');
     }
 
     /*

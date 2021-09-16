@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'NOME')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'CH_TOTAL')->textInput(['type'=>'number']) ?>
+    <?= $form->field($model, 'ch_total')->textInput(['type'=>'number']) ?>
 
-    <?= $form->field($model, 'Q_PERIODOS')->textInput(['type'=>'number']) ?>
+    <?= $form->field($model, 'q_periodos')->textInput(['type'=>'number']) ?>
 
-    <?= $form->field($model, 'SIGLA')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'sigla')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>

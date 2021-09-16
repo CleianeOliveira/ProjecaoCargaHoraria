@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'NOME')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'LOGIN')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'login')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'SENHA')->textInput(['maxlength' => true,'type'=>'password']) ?>
+    <?= $form->field($model, 'senha')->textInput(['maxlength' => true,'type'=>'password']) ?>
 
-    <?= $form->field($model, 'NUCLEO_ID')->textInput() ?>
+    
 
     <div class="form-group">
         <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>

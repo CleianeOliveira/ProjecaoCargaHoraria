@@ -13,12 +13,12 @@ class m210731_113025_Curso extends Migration
     public function safeUp()
     {
 #CURSO (ID, NOME, CH_TOTAL, Q_PERIODOS, SIGLA)
-        $this->createTable('CURSO', [
-            'ID'=>$this->primaryKey(),
-            'NOME'=>$this->string()->notNull(),
-            'CH_TOTAL'=>$this->integer(),
-            'Q_PERIODOS'=>$this->smallInteger(),
-            'SIGLA'=>$this->string(10)
+        $this->createTable('curso', [
+            'id'=>$this->primaryKey(),
+            'nome'=>$this->string()->notNull(),
+            'ch_total'=>$this->integer(),
+            'q_periodos'=>$this->smallInteger(),
+            'sigla'=>$this->string(10)
         ]);
 
     }
@@ -28,7 +28,7 @@ class m210731_113025_Curso extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('CURSO');
+        $this->dropTable('curso');
     }
 
     /*

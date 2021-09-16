@@ -7,18 +7,18 @@ use Yii;
 /**
  * This is the model class for table "usuario".
  *
- * @property int $ID
- * @property string|null $LOGIN
- * @property string|null $SENHA
- * @property string $NOME
- * @property int|null $NUCLEO_ID
+ * @property int $id
+ * @property string|null $login
+ * @property string|null $senha
+ * @property string $nome
+ * @property int|null $nucleo_id
  *
  * @property Coordena[] $coordenas
- * @property Curso[] $cURSOs
+ * @property Curso[] $cursos
  * @property Oferta[] $ofertas
- * @property Nucleo $nUCLEO
+ * @property Nucleo $nucleo
  */
-class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class Usuario extends \yii\db\ActiveRecord implements \yii\web\identityInterface
 
 {
     /**
@@ -35,10 +35,10 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['NOME'], 'required'],
-            [['NUCLEO_ID'], 'integer'],
-            [['LOGIN', 'SENHA', 'NOME'], 'string', 'max' => 255],
-            [['NUCLEO_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Nucleo::className(), 'targetAttribute' => ['NUCLEO_ID' => 'ID']],
+            [['nome'], 'required'],
+            [['nucleo_id'], 'integer'],
+            [['login', 'senha', 'nome'], 'string', 'max' => 255],
+            [['nucleo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Nucleo::className(), 'targetAttribute' => ['nucleo_id' => 'id']],
         ];
     }
 
@@ -48,57 +48,19 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function attributeLabels()
     {
         return [
-            'ID' => 'ID',
-            'LOGIN' => 'Login',
-            'SENHA' => 'Senha',
-            'NOME' => 'Nome',
-            'NUCLEO_ID' => 'Núcleo',
+            'id' => 'id',
+            'login' => 'Login',
+            'senha' => 'Senha',
+            'nome' => 'Nome',
+            
         ];
     }
 
-    /**
-     * Gets query for [[Coordenas]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCoordenas()
-    {
-        return $this->hasMany(Coordena::className(), ['USUARIO_ID' => 'ID']);
-    }
-
-    /**
-     * Gets query for [[CURSOs]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCURSOs()
-    {
-        return $this->hasMany(Curso::className(), ['ID' => 'CURSO_ID'])->viaTable('coordena', ['USUARIO_ID' => 'ID']);
-    }
-
-    /**
-     * Gets query for [[Ofertas]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOfertas()
-    {
-        return $this->hasMany(Oferta::className(), ['USUARIO_ID' => 'ID']);
-    }
-
-    /**
-     * Gets query for [[NUCLEO]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getNUCLEO()
-    {
-        return $this->hasOne(Nucleo::className(), ['ID' => 'NUCLEO_ID']);
-    }
+    
     /**
      * {@inheritdoc}
      */
-    public static function findIdentity($id)
+    public static function findidentity($id)
     {
         return static::findOne($id);
     }
@@ -106,7 +68,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function findIdentityByAccessToken($token, $type = null)
+    public static function findidentityByAccessToken($token, $type = null)
     {
         throw new  yii\base\UnknownPropertyException();
     }
@@ -114,9 +76,9 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         /**
      * {@inheritdoc}
      */
-    public function getId()
+    public function getid()
     {
-        return $this->ID;
+        return $this->id;
     }
  
     /**
@@ -133,18 +95,18 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
  
     public static function findByUsername($username){
-        return self::findOne(['LOGIN'=>$username]);
+        return self::findOne(['login'=>$username]);
     }
  
     public function validatePassword($password)
     {
-        return Yii::$app->getSecurity()->validatePassword($password, $this->SENHA);
+        return Yii::$app->getSecurity()->validatePassword($password, $this->senha);
     }
 
     public function beforeSave($insert)
     {
        if (parent::beforeSave($insert)) {
-           $this->SENHA = Yii::$app->security->generatePasswordHash($this->SENHA);
+           $this->senha = Yii::$app->security->generatePasswordHash($this->senha);
            return true;
        } else {
            return false;

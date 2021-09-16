@@ -17,8 +17,8 @@ class NucleoSearch extends Nucleo
     public function rules()
     {
         return [
-            [['ID'], 'integer'],
-            [['NOME'], 'safe'],
+            [['id'], 'integer'],
+            [['nome'], 'safe'],
         ];
     }
 
@@ -58,10 +58,11 @@ class NucleoSearch extends Nucleo
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'ID' => $this->ID,
+            'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'NOME', $this->NOME]);
+        $query->andFilterWhere(['like', 'nome', $this->nome])
+        ->orderBy('nome');
 
         return $dataProvider;
     }

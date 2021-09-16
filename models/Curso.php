@@ -7,15 +7,15 @@ use Yii;
 /**
  * This is the model class for table "curso".
  *
- * @property int $ID
- * @property string $NOME
- * @property int|null $CH_TOTAL
- * @property int|null $Q_PERIODOS
- * @property string|null $SIGLA
+ * @property int $id
+ * @property string $nome
+ * @property int|null $ch_total
+ * @property int|null $q_periodos
+ * @property string|null $sigla
  *
  * @property Coordena[] $coordenas
- * @property Usuario[] $uSUARIOs
- * @property Matriz[] $matrizs
+ * @property Usuario[] $usuarios
+ * @property Matriz[] $matrizes
  */
 class Curso extends \yii\db\ActiveRecord
 {
@@ -33,10 +33,10 @@ class Curso extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['NOME'], 'required','message'=>'Por favor preencha um nome'],
-            [['CH_TOTAL', 'Q_PERIODOS'], 'integer', 'message'=> 'Preencha somente valores numéricos'],
-            [['NOME'], 'string', 'max' => 255],
-            [['SIGLA'], 'string', 'max' => 10],
+            [['nome'], 'required','message'=>'Por favor preencha um nome'],
+            [['ch_total', 'q_periodos'], 'integer', 'message'=> 'Preencha somente valores numéricos'],
+            [['nome'], 'string', 'max' => 255],
+            [['sigla'], 'string', 'max' => 10],
         ];
     }
 
@@ -46,11 +46,11 @@ class Curso extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ID' => 'Id',
-            'NOME' => 'Nome',
-            'CH_TOTAL' => 'Carga Horária Total',
-            'Q_PERIODOS' => 'Quantidade de Periodos',
-            'SIGLA' => 'Sigla',
+            'id' => 'id',
+            'nome' => 'Nome',
+            'ch_total' => 'Carga Horária Total',
+            'q_periodos' => 'Quantidade de Periodos',
+            'sigla' => 'Sigla',
         ];
     }
 
@@ -61,7 +61,7 @@ class Curso extends \yii\db\ActiveRecord
      */
     public function getCoordenas()
     {
-        return $this->hasMany(Coordena::className(), ['CURSO_ID' => 'ID']);
+        return $this->hasMany(Coordena::className(), ['curso_id' => 'id']);
     }
 
     /**
@@ -69,9 +69,9 @@ class Curso extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getUSUARIOs()
+    public function getUsuarios()
     {
-        return $this->hasMany(Usuario::className(), ['ID' => 'USUARIO_ID'])->viaTable('coordena', ['CURSO_ID' => 'ID']);
+        return $this->hasMany(Usuario::className(), ['id' => 'usuario_id'])->viaTable('coordena', ['curso_id' => 'id']);
     }
 
     /**
@@ -79,8 +79,8 @@ class Curso extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMatrizs()
+    public function getMatrizes()
     {
-        return $this->hasMany(Matriz::className(), ['CURSO_ID' => 'ID']);
+        return $this->hasMany(Matriz::className(), ['curso_id' => 'id']);
     }
 }

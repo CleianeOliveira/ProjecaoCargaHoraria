@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "nucleo".
  *
- * @property int $ID
- * @property string|null $NOME
+ * @property int $id
+ * @property string|null $nome
  *
  * @property Disciplina[] $disciplinas
  * @property Usuario[] $usuarios
@@ -29,7 +29,7 @@ class Nucleo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['NOME'], 'string', 'max' => 255],
+            [['nome'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,8 +39,8 @@ class Nucleo extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ID' => 'ID',
-            'NOME' => 'Nome',
+            'id' => 'id',
+            'nome' => 'Nome',
         ];
     }
 
@@ -51,7 +51,7 @@ class Nucleo extends \yii\db\ActiveRecord
      */
     public function getDisciplinas()
     {
-        return $this->hasMany(Disciplina::className(), ['NUCLEO_ID' => 'ID']);
+        return $this->hasMany(Disciplina::className(), ['nucleo_id' => 'id']);
     }
 
     /**
@@ -61,6 +61,6 @@ class Nucleo extends \yii\db\ActiveRecord
      */
     public function getUsuarios()
     {
-        return $this->hasMany(Usuario::className(), ['NUCLEO_ID' => 'ID']);
+        return $this->hasMany(Usuario::className(), ['nucleo_id' => 'id']);
     }
 }

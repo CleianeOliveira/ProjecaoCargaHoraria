@@ -12,16 +12,16 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'SEMESTRE_ANO_INICIO')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'semestre_ano_inicio')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'MATRIZ_ID')->textInput() ?>
+    <?= $form->field($model, 'matriz_id')->textInput() ?>
 
-    <?= $form->field($model, 'USUARIO_ID')->textInput() ?>
+    <?= $form->field($model, 'usuario_id')->textInput() ?>
 
-    <?= $form->field($model, 'DATA_REGISTRO')->textInput() ?>
+    <?= $form->field($model, 'data_registro')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

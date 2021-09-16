@@ -13,13 +13,13 @@ class m210731_113035_Matriz extends Migration
     public function safeUp()
     {
         #MATRIZ (ID, SIGLA, CH_TOTAL, CURSO_FK)
-        $this->createTable('MATRIZ', [
-            'ID'=>$this->primaryKey(),
-            'SIGLA'=>$this->string(10),
-            'CH_TOTAL'=>$this->integer(),
-            'CURSO_ID'=>$this->integer()
+        $this->createTable('matriz', [
+            'id'=>$this->primaryKey(),
+            'sigla'=>$this->string(10),
+            'ch_total'=>$this->integer(),
+            'curso_id'=>$this->integer()
         ]);
-        $this->addForeignKey('curso_fk', 'MATRIZ', 'CURSO_ID', 'CURSO', 'ID', 'RESTRICT');
+        $this->addForeignKey('curso_fk', 'matriz', 'curso_id', 'curso', 'id', 'RESTRICT');
 
     }
 
@@ -28,7 +28,7 @@ class m210731_113035_Matriz extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('MATRIZ');
+        $this->dropTable('matriz');
     }
 
     /*

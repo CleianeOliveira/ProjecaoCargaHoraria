@@ -17,8 +17,8 @@ class OfertaSearch extends Oferta
     public function rules()
     {
         return [
-            [['ID', 'MATRIZ_ID', 'USUARIO_ID'], 'integer'],
-            [['SEMESTRE_ANO_INICIO', 'DATA_REGISTRO'], 'safe'],
+            [['id', 'matriz_id', 'usuario_id'], 'integer'],
+            [['semestre_ano_inicio', 'data_registro'], 'safe'],
         ];
     }
 
@@ -58,13 +58,13 @@ class OfertaSearch extends Oferta
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'ID' => $this->ID,
-            'MATRIZ_ID' => $this->MATRIZ_ID,
-            'USUARIO_ID' => $this->USUARIO_ID,
-            'DATA_REGISTRO' => $this->DATA_REGISTRO,
+            'id' => $this->id,
+            'matriz_id' => $this->matriz_id,
+            'usuario_id' => $this->usuario_id,
+            'data_registro' => $this->data_registro,
         ]);
 
-        $query->andFilterWhere(['like', 'SEMESTRE_ANO_INICIO', $this->SEMESTRE_ANO_INICIO]);
+        $query->andFilterWhere(['like', 'semestre_ano_inicio', $this->semestre_ano_inicio]);
 
         return $dataProvider;
     }

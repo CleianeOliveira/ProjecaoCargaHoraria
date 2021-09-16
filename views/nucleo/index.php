@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\NucleoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Nucleos';
+$this->title = 'Núcleos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="nucleo-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Nucleo', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Novo Núcleo', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,12 +26,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ID',
-            'NOME',
+            //'id',
+            'nome',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'delete' => function($url, $model){
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
+                            'class' => '',
+                            'data' => [
+                                'confirm' => 'Deseja excluir este núcleo?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    }
+                ]
+            
+            ],
         ],
-    ]); ?>
+    
+    ]); 
+    
+    ?>
 
 
 </div>

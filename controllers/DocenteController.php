@@ -3,18 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Curso;
-use app\models\CursoSearch;
+use app\models\Docente;
+use app\models\DocenteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use yii\web\ForbiddenHttpException;
 
 /**
- * CursoController implements the CRUD actions for Curso model.
+ * DocenteController implements the CRUD actions for Docente model.
  */
-class CursoController extends Controller
+class DocenteController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -28,18 +26,16 @@ class CursoController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-            
- 
         ];
     }
 
     /**
-     * Lists all Curso models.
+     * Lists all Docente models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CursoSearch();
+        $searchModel = new DocenteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,7 +45,7 @@ class CursoController extends Controller
     }
 
     /**
-     * Displays a single Curso model.
+     * Displays a single Docente model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -62,16 +58,16 @@ class CursoController extends Controller
     }
 
     /**
-     * Creates a new Curso model.
+     * Creates a new Docente model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Curso();
+        $model = new Docente();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -80,7 +76,7 @@ class CursoController extends Controller
     }
 
     /**
-     * Updates an existing Curso model.
+     * Updates an existing Docente model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +87,7 @@ class CursoController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -100,7 +96,7 @@ class CursoController extends Controller
     }
 
     /**
-     * Deletes an existing Curso model.
+     * Deletes an existing Docente model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -114,15 +110,15 @@ class CursoController extends Controller
     }
 
     /**
-     * Finds the Curso model based on its primary key value.
+     * Finds the Docente model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Curso the loaded model
+     * @return Docente the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Curso::findOne($id)) !== null) {
+        if (($model = Docente::findOne($id)) !== null) {
             return $model;
         }
 
