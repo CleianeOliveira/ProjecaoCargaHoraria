@@ -14,60 +14,18 @@
             </div>
         </div>
 
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
+        
 
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'Cursos', 'url' => ['/curso/index']],
-                    //['label' => 'Disciplina', 'url' => ['/disciplina/index']],
-                    //['label' => 'Matriz', 'url' => ['/matriz/index']],
-                    ['label' => 'Núcleos', 'url' => ['/nucleo/index']],
-                    ['label' => 'Ofertas', 'url' => ['/oferta/index']],            
-                    ['label' => 'Docentes', 'url' => ['/docente/index']],
-                    ['label' => 'Usuários', 'url' => ['/usuario/index']],
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
-                        'label' => 'Some tools',
-                        'icon' => 'share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
+                    ['label' => 'Projeção', 'icon' => 'bar-chart', 'url' => ['/curso/index']],
+                    ['label' => 'Cursos', 'icon' => 'graduation-cap', 'url' => ['/curso/index']],
+                    ['label' => 'Núcleos', 'icon' => 'graduation-cap', 'url' => ['/nucleo/index']],
+                    ['label' => 'Ofertas', 'icon' => 'graduation-cap', 'url' => ['/oferta/index']],            
+                    ['label' => 'Docentes', 'icon' => 'graduation-cap', 'url' => ['/docente/index']],
+                    ['label' => 'Usuários', 'icon' => 'graduation-cap', 'url' => ['/usuario/index']],
                 ],
             ]
         ) ?>

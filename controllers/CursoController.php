@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 
+
 /**
  * CursoController implements the CRUD actions for Curso model.
  */
@@ -28,6 +29,33 @@ class CursoController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create','delete','view','update'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create','delete'],
+                        'roles' => ['@'],
+                    ],
+                ],
+  
+                'denyCallback' => function($rule, $action) {
+                    if (Yii::$app->user->isGuest) {
+                        Yii::$app->user->loginRequired();
+                    }
+                    else {
+                        throw new ForbiddenHttpException('Você não tem acesso a essa funcionalidade.');
+                    }                   
+                }
+  
+            ],
+ 
             
  
         ];
