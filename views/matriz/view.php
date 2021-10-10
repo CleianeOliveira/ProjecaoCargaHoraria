@@ -6,34 +6,25 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Matriz */
 
-$this->title = $model->ID;
-$this->params['breadcrumbs'][] = ['label' => 'Matrizs', 'url' => ['index']];
+$this->title = $model->SIGLA;
+$this->params['breadcrumbs'][] = ['label' => 'Matrizes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="matriz-view">
+<div class="matriz-view box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box-header"></div>
+    <div class="box-body">   
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->ID], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'ID',
+                'SIGLA',
+                'CH_TOTAL',
+                'CURSO_ID',
             ],
         ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'ID',
-            'SIGLA',
-            'CH_TOTAL',
-            'CURSO_ID',
-        ],
-    ]) ?>
+    </div>
 
 </div>

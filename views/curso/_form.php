@@ -14,14 +14,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ch_total')->textInput(['type'=>'number']) ?>
-
     <?= $form->field($model, 'q_periodos')->textInput(['type'=>'number']) ?>
 
     <?= $form->field($model, 'sigla')->textInput(['maxlength' => true]) ?>
 
-    <div class="form-group">
+    <div class="box-footer">
+
+        <?= Html::a('<i class="fa fa-close"></i> Cancelar', ['index'], ['class' => 'btn btn-warning']) ?>    
         <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>
+        
     </div>
 
     <?php ActiveForm::end(); ?>

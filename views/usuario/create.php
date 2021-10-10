@@ -9,12 +9,17 @@ $this->title = 'Novo Usuário';
 $this->params['breadcrumbs'][] = ['label' => 'Usuários', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="usuario-create">
+<div class="usuario-create box box-primary">
+    <div class="box-header">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        
+    </div>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="box-body">
+
+        <?= $this->render('_form', [
+            'model' => $model,
+        ]) ?>
+    </div>
 
 </div>

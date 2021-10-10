@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Matriz;
+use app\models\Curso;
 use app\models\MatrizSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -65,13 +66,17 @@ class MatrizController extends Controller
     public function actionCreate()
     {
         $model = new Matriz();
+        $session = Yii::$app->session;
+        $curso = Curso::findOne($session['curso_id']);
+        $model->CURSO_ID = $curso->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
+            return $this->redirect(['curso/view', 'id' => $curso->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'curso' => $curso,
         ]);
     }
 
@@ -85,9 +90,12 @@ class MatrizController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $session = Yii::$app->session;
+        $curso = Curso::findOne($session['curso_id']);
+        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
+            return $this->redirect(['curso/view', 'id' => $curso->id]);
         }
 
         return $this->render('update', [
@@ -106,7 +114,10 @@ class MatrizController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        $session = Yii::$app->session;
+        $curso = Curso::findOne($session['curso_id']);
+
+        return $this->redirect(['curso/view','id'=>$curso->id]);
     }
 
     /**

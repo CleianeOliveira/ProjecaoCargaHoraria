@@ -10,45 +10,50 @@ use yii\grid\GridView;
 $this->title = 'Núcleos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="nucleo-index">
+<div class="nucleo-index box box-primary">
+    <div class="box-header with-border">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <p>
+            <?= Html::a('Novo Núcleo', ['create'], ['class' => 'btn btn-primary']) ?>
+        </p>
 
-    <p>
-        <?= Html::a('Novo Núcleo', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    </div>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <div class="box-body">
 
-            //'id',
-            'nome',
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'summary' => '',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'buttons' => [
-                    'delete' => function($url, $model){
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
-                            'class' => '',
-                            'data' => [
-                                'confirm' => 'Deseja excluir este núcleo?',
-                                'method' => 'post',
-                            ],
-                        ]);
-                    }
-                ]
-            
+                //'id',
+                'nome',
+
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'buttons' => [
+                        'delete' => function($url, $model){
+                            return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
+                                'class' => '',
+                                'data' => [
+                                    'confirm' => 'Deseja excluir este núcleo?',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        }
+                    ]
+                
+                ],
             ],
-        ],
-    
-    ]); 
-    
-    ?>
+        
+        ]); 
+        
+        ?>
+    </div>
 
 
 </div>

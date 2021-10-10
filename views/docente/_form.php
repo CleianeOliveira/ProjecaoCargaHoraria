@@ -18,10 +18,10 @@ use app\models\Nucleo;
 
     <?= $form->field($model, 'nucleo_id')->
        dropDownList(ArrayHelper::map(Nucleo::find()
-           ->orderBy('NOME')
-           ->all(),'ID','NOME'),
+           ->orderBy('nome')
+           ->all(),'id','nome'),
            ['prompt' => 'Selecione um núcleo'] )
-?>
+    ?>
 
 
     <div class="form-group">

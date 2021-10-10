@@ -20,12 +20,15 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
+                    ['label' => '', 'options' => ['class' => 'header']],
                     ['label' => 'Projeção', 'icon' => 'bar-chart', 'url' => ['/curso/index']],
-                    ['label' => 'Cursos', 'icon' => 'graduation-cap', 'url' => ['/curso/index']],
-                    ['label' => 'Núcleos', 'icon' => 'graduation-cap', 'url' => ['/nucleo/index']],
-                    ['label' => 'Ofertas', 'icon' => 'graduation-cap', 'url' => ['/oferta/index']],            
-                    ['label' => 'Docentes', 'icon' => 'graduation-cap', 'url' => ['/docente/index']],
-                    ['label' => 'Usuários', 'icon' => 'graduation-cap', 'url' => ['/usuario/index']],
+                    ['label' => 'Ofertas', 'icon' => 'bookmark', 'url' => ['/oferta/index']],            
+                                      
+                       
+                    ['label' => 'Cursos', 'icon' => 'cubes', 'url' => ['/curso/index']],                                    
+                    ['label' => 'Docentes', 'icon' => 'graduation-cap', 'url' => ['/docente/index']],  
+                    ['label' => 'Núcleos', 'icon' => 'users', 'url' => ['/nucleo/index']],
+                    ['label' => 'Usuários', 'icon' => 'user', 'url' => ['/usuario/index']],
                 ],
             ]
         ) ?>

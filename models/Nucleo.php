@@ -30,6 +30,7 @@ class Nucleo extends \yii\db\ActiveRecord
     {
         return [
             [['nome'], 'string', 'max' => 255],
+            [['nome'],'required'],
         ];
     }
 

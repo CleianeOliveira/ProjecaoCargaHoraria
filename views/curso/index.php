@@ -10,49 +10,42 @@ use yii\grid\GridView;
 $this->title = 'Cursos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="curso-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="curso-index box box-primary">
+    <div class="box-header with-border">
+        <?= Html::a('Novo Curso', ['create'], ['class' => 'btn btn-primary']) ?>        
+    </div>
+    <div class="box-body">  
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                //['class' => 'yii\grid\SerialColumn'],
 
-    <p>
-        <?= Html::a('Novo Curso', ['create'], ['class' => 'btn btn-success']) ?>        
-    </p>
+                //'ID',
+                'nome',                
+                'q_periodos',
+                'sigla',
 
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
-
-            //'ID',
-            'nome',
-            [ 
-                'attribute'=>'ch_total',              
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'buttons' => [
+                        'delete' => function($url, $model){
+                            return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
+                                'class' => '',
+                                'data' => [
+                                    'confirm' => 'Deseja excluir este curso?',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        }
+                    ]
+                
+                ],
+                
             ],
-            'q_periodos',
-            'sigla',
-
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'buttons' => [
-                    'delete' => function($url, $model){
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
-                            'class' => '',
-                            'data' => [
-                                'confirm' => 'Deseja excluir este curso?',
-                                'method' => 'post',
-                            ],
-                        ]);
-                    }
-                ]
-            
-            ],
-            
-        ],
-    ]); 
-    ?>
-
-
+            'summary' => '',
+        ]); 
+        ?>
+    </div>
 </div>

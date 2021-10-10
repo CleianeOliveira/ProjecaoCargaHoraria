@@ -10,13 +10,16 @@ use yii\grid\GridView;
 $this->title = 'Docentes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="docente-index">
+<div class="docente-index box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box-header">
 
     <p>
         <?= Html::a('Novo Docente', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+</div>
+
+    <div class="box-body">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -28,12 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'nome',
-            'nucleo.NOME',
+            [
+                'attribute'=>'nucleo.nome',
+                'label'=>'Núcleo',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
-
+</div>
 
 </div>

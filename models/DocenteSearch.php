@@ -14,11 +14,17 @@ class DocenteSearch extends Docente
     /**
      * {@inheritdoc}
      */
+
+    public function attributes()
+    {      
+        return array_merge(parent::attributes(), ['nucleo.nome']);
+    }
+ 
     public function rules()
     {
         return [
             [['id', 'nucleo_id'], 'integer'],
-            [['nome'], 'safe'],
+            [['nome','nucleo.nome'], 'safe'],
         ];
     }
 
@@ -48,6 +54,13 @@ class DocenteSearch extends Docente
             'query' => $query,
         ]);
 
+        $query->joinWith(['nucleo']);
+        $dataProvider->sort->attributes['nucleo.nome'] = [
+            'asc' => ['nucleo.nome' => SORT_ASC],
+            'desc' => ['nucleo.nome' => SORT_DESC],
+        ];
+
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -63,6 +76,7 @@ class DocenteSearch extends Docente
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome]);
+        $query->andFilterWhere(['like', 'nucleo.nome', $this->getAttribute('nucleo.nome')]);
 
         return $dataProvider;
     }

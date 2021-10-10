@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use yii\data\ActiveDataProvider;
 /**
  * This is the model class for table "curso".
  *
@@ -49,7 +49,7 @@ class Curso extends \yii\db\ActiveRecord
             'id' => 'id',
             'nome' => 'Nome',
             'ch_total' => 'Carga Horária Total',
-            'q_periodos' => 'Quantidade de Periodos',
+            'q_periodos' => 'Quantidade de Períodos',
             'sigla' => 'Sigla',
         ];
     }
@@ -81,6 +81,11 @@ class Curso extends \yii\db\ActiveRecord
      */
     public function getMatrizes()
     {
-        return $this->hasMany(Matriz::className(), ['curso_id' => 'id']);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $this->hasMany(Matriz::className(), ['curso_id' => 'id']),
+        ]);
+        return $dataProvider;
     }
+
+   
 }

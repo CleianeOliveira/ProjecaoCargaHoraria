@@ -5,17 +5,17 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Matriz */
 
-$this->title = 'Update Matriz: ' . $model->ID;
-$this->params['breadcrumbs'][] = ['label' => 'Matrizs', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->ID, 'url' => ['view', 'id' => $model->ID]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Alterar Matriz: ' . $model->SIGLA;
+$this->params['breadcrumbs'][] = ['label' => 'Matrizes', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->SIGLA, 'url' => ['view', 'id' => $model->ID]];
+$this->params['breadcrumbs'][] = 'Alterar';
 ?>
-<div class="matriz-update">
+<div class="matriz-update box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+    <h1></h1>
+    <div class="box-body">
+        <?= $this->render('_form', [
+            'model' => $model,
+        ]) ?>
+    </div>
 </div>

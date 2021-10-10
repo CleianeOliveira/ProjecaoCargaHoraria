@@ -7,31 +7,30 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Nucleo */
 
 $this->title = $model->nome;
-$this->params['breadcrumbs'][] = ['label' => 'Nucleos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Núcleos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="nucleo-view">
+<div class="nucleo-view box box-primary">
+    <div class="box-header">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        
 
-    <p>
-        <?= Html::a('Alterar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Excluir', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Deseja excluir este núcleo?',
-                'method' => 'post',
+    </div>
+
+    <div class="box-body">
+
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'id',
+                'nome',
             ],
         ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nome',
-        ],
-    ]) ?>
+    </div>
 
+    <div class="box-footer">
+        <?= Html::a('<i class="fa fa-chevron-left"></i> Voltar', ['index'], ['class' => 'btn btn-primary']) ?>    
+    </div>
 </div>

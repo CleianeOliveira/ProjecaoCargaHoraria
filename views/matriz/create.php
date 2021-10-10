@@ -5,13 +5,15 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Matriz */
 
-$this->title = 'Create Matriz';
-$this->params['breadcrumbs'][] = ['label' => 'Matrizs', 'url' => ['index']];
+$this->title = 'Nova Matriz - '.$curso->nome;
+$this->params['breadcrumbs'][] = ['label' => 'Matrizes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="matriz-create">
+<div class="matriz-create box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box-header"></div>
+    <div class="box-body"
+        
 
     <?= $this->render('_form', [
         'model' => $model,

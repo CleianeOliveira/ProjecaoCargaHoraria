@@ -9,12 +9,10 @@ $this->title = 'Novo Curso';
 $this->params['breadcrumbs'][] = ['label' => 'Cursos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="curso-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
-</div>
+<div class="curso-create box box-primary">
+    <div class="box-body"> 
+        <?= $this->render('_form', [
+            'model' => $model,
+        ]) ?>
+    </div>
+ </div>

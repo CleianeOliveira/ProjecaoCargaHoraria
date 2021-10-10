@@ -28,33 +28,7 @@ class CursoController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['create','delete','view','update'],
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['view'],
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => ['create','delete'],
-                        'roles' => ['@'],
-                    ],
-                ],
-  
-                'denyCallback' => function($rule, $action) {
-                    if (Yii::$app->user->isGuest) {
-                        Yii::$app->user->loginRequired();
-                    }
-                    else {
-                        throw new ForbiddenHttpException('Você não tem acesso a essa funcionalidade.');
-                    }                   
-                }
-  
-            ],
+            ],       
  
             
  
@@ -84,8 +58,12 @@ class CursoController extends Controller
      */
     public function actionView($id)
     {
+       $session = Yii::$app->session;
+       $session['curso_id'] = $id;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'dataProviderMatriz' => $this->findModel($id)->matrizes,
         ]);
     }
 
@@ -99,7 +77,8 @@ class CursoController extends Controller
         $model = new Curso();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view','id'=>$model->id]);
+            
         }
 
         return $this->render('create', [
@@ -119,7 +98,7 @@ class CursoController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view','id'=>$model->id]);
         }
 
         return $this->render('update', [

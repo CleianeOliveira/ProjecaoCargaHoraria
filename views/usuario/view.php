@@ -11,29 +11,27 @@ $this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="usuario-view">
+<div class="usuario-view box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box-header">
+    </div>
 
-    <p>
-        <?= Html::a('Alterar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Excluir', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Deseja excluir esse usuário?',
-                'method' => 'post',
+    <div class="box-body">
+
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                
+                'nome',
+                'login',
+                
             ],
         ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            
-            'nome',
-            'login',
-            
-        ],
-    ]) ?>
+    </div>
+
+    <div class="box-footer">
+        <?= Html::a('<i class="fa fa-chevron-left"></i> Voltar', ['index'], ['class' => 'btn btn-primary']) ?>    
+    </div>
 
 </div>

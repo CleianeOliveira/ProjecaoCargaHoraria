@@ -125,4 +125,13 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionError()
+{
+   $exception = Yii::$app->errorHandler->exception;
+   if ($exception !== null) {
+       if ($exception=='23000'){ $exception = "Integridade";}
+       return $this->render('error', ['exception' => $exception]);
+   }
+}
 }

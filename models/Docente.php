@@ -50,6 +50,6 @@ class Docente extends \yii\db\ActiveRecord
 
     public function getNucleo()
     {
-        return $this->hasOne(Nucleo::className(), ['ID' => 'nucleo_id']);
+        return $this->hasOne(Nucleo::className(), ['id' => 'nucleo_id']);
     }
 }
